@@ -9,7 +9,7 @@ Feature: Como empresa no registrada en la aplicación, deseo crearme una cuenta,
 
         Examples:
             | RUC         | correo-electronico | contraseña | confirmar contraseña | Resultado |
-            | 10202255431 | liventur@gmail.com | admin123@# | admin123@#           | Gracias por registrarse. Revise su correo para verificación |
+            | 10202255431 | liventur@gmail.com | admin123@# | admin123@#           | Fuiste registrado de manera exitosa, ir a login para iniciar sesión |
 
     Scenario: E02: Registro inválido
         TA02
@@ -20,6 +20,29 @@ Feature: Como empresa no registrada en la aplicación, deseo crearme una cuenta,
         Then la app le mostrará un mensaje diciéndole que el correo electrónico ya está registrado, y le sugiere iniciar sesión.
 
         Examples:
-            | RUC         | correo-electronico | contraseña | confirmar contraseña | Resultado |
-            | 10202255431 | liventur@gmail.com | admin123@# | admin123@#           | Este correo ya se encuentra en uso. Le recomendamos iniciar sesión |
-           
+            | RUC         | correo-electronico | contraseña | confirmar contraseña | Resultado                     |
+            | 10202255431 | liventur@gmail.com | admin123@# | admin123@#           | Este correo ya fue registrado |
+
+    Scenario: E03: Intenta registrarse sin completar todos los campos
+        TA03
+
+        Given se encuentra en el formulario de registro de cuenta para empresas
+        When no ingresa ningun dato solicitado como requerido
+        And presiona el botón “Register”.
+        Then la app le mostrará un mensaje indicando que debe completar todos los campos requeridos
+
+        Examples:
+            | RUC   | correo-electronico | contraseña | confirmar contraseña | Resultado                                |
+            | ""    | ""                 | ""         |     ""               | Por favor completa los campos requeridos |
+
+    Scenario: E04: Ingrega una contraseña de confirmación incorrecta
+        TA04
+
+        Given se encuentra en el formulario de registro de cuenta para empresas
+        When ingresa la confirmación de la contraseña de manera incorrecta
+        And presiona el botón “Register”.
+        Then la app le mostrará un mensaje indicando que debe confirmar con la misma contraseña
+
+        Examples:
+            | RUC         | correo-electronico | contraseña | confirmar contraseña | Resultado                                  |
+            | 10202255431 | liventur@gmail.com | admin123@# | admin123@#ASD        | Ingresa la misma contraseña para confirmar |

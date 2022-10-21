@@ -23,7 +23,7 @@ Feature: Como conductor profesional, no registrado en la aplicación, deseo crea
             | correo-electronico    | DNI      | contraseña | confirmar contraseña | Resultado                     |
             | abeleldulce@gmail.com | 75893047 | Driver#05  | Driver#05            | Este correo ya fue registrado |
     Scenario: E03: Intenta registrarse sin completar todos los campos
-        TA02
+        TA03
 
         Given se encuentra en el formulario de registro de cuenta para conductores profesionales
         When no ingresa ningun dato solicitado como requerido
@@ -34,8 +34,8 @@ Feature: Como conductor profesional, no registrado en la aplicación, deseo crea
             | correo-electronico    | DNI  | contraseña | confirmar contraseña | Resultado                                |
             | ""                    | ""   | ""         | ""                   | Por favor completa los campos requeridos |
 
-Scenario: E04: Ingrega una contraseña de confirmación incorrecta
-        TA02
+    Scenario: E04: Ingrega una contraseña de confirmación incorrecta
+        TA04
 
         Given se encuentra en el formulario de registro de cuenta para conductores profesionales
         When ingresa la confirmación de la contraseña de manera incorrecta
